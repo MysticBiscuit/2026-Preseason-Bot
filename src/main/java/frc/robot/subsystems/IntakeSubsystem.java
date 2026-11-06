@@ -15,38 +15,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class IntakeSubsystem extends SubsystemBase{
-    private SparkMax m_exampleMotorOne;
-    private SparkMax m_exampleMotorTwo;
+    private SparkMax m_intakeHug;
+    private SparkMax m_intakeFlipper;
 
-    private final Pigeon2 m_gyro = new Pigeon2(Constants.DriveConstants.kGyroID);
+    public IntakeSubsystem() {
+        m_intakeHug = new SparkMax (Constants.DriveConstants.kIntakeExtenderOneCanId, MotorType.kBrushless);
+         m_intakeFlipper = new SparkMax (Constants.DriveConstants.kIntakeExtenderOneCanId, MotorType.kBrushless);
 
-    public IntakeSubsystem(){
-        m_exampleMotorOne = new SparkMax(Constants.DriveConstants.kShooterIndexerCanId, MotorType.kBrushless);
-        m_exampleMotorTwo = new SparkMax(Constants.DriveConstants.kShooterCanId, MotorType.kBrushless);
+
+         
     }
-
-    @Override
-    public void periodic(){
-        if (!DriverStation.isAutonomous()){
-
-        }
-    }
-
-    public void exampleFunction(boolean test) {
-        if(test) {
-            m_exampleMotorTwo.set(-0.7);
-        } else if (DriverStation.isTeleop()) {
-            m_exampleMotorTwo.set(0);
-        }
-    }
-    public void zeroIt(boolean zero) {
-        if (zero) {
-            m_gyro.reset();
-        }
-    }
-
-    public void updateWithControls(boolean armKillSwitch) {
-    
-    }
-
 }

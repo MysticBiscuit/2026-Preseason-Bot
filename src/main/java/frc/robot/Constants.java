@@ -66,6 +66,8 @@ public final class Constants {
   
     public static final int kElevatorTopLimitCanId = 9;
     public static final int kElevatorBottomLimitCanId = 10;
+    public static final int kElevatorLevelOneLimitCanId = 11;
+    public static final int kElevatorLevelTwoLimitCanId = 12;
 
     public static final int kGyroID = 0;
 

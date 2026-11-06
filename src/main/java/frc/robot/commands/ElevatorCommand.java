@@ -12,13 +12,15 @@ public class ElevatorCommand extends Command {
     public IntakeCommand(IntakeSubsystem elevator,XboxController controller) {
         m_elevatorMotorOne = elevator;
         m_Controller = controller;
-        addRequirements(intake);
+        addRequirements(elevator);
     }
 
     @Override
     public void execute() {
-        m_elevatorMotorOne.updateWithControls(
-            m_Controller.getPOV() == 180
-        );
-    
-}}
+      
+        m_elevatorMotorOne.elevatorManualCommands(m_Controller.getYButton(),m_Controller.getAButton());
+        m_elevatorMotorTwo.elevatorManualCommands(m_Controller.getYButton(),m_Controller.getAButton());
+        
+
+    }
+}
