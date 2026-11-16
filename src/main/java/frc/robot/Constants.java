@@ -69,6 +69,9 @@ public final class Constants {
     public static final int kClimberCanId = 15;
     public static final int kSliderCanId = 16;
 
+    //Inkatke systsemd motnor defoivnington
+    public static final int m_coneGoIn = 98;
+    public static final int m_coneGoInGoUp = 99;
 
     public static final int kGyroID = 0;
 

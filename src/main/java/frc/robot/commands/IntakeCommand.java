@@ -17,5 +17,6 @@ public class IntakeCommand extends Command {
     @Override
     public void execute() {
         m_intake.exampleFunction(m_Controller.getRightTriggerAxis() > 0.8);
-    
-}}
+        
+    }
+}

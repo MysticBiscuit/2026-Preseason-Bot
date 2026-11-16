@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import edu.wpi.first.wpilibj.XboxController;
 
 public class IntakeSubsystem extends SubsystemBase{
     private SparkMax m_exampleMotorOne;
@@ -21,8 +22,9 @@ public class IntakeSubsystem extends SubsystemBase{
     private final Pigeon2 m_gyro = new Pigeon2(Constants.DriveConstants.kGyroID);
 
     public IntakeSubsystem(){
-        m_exampleMotorOne = new SparkMax(Constants.DriveConstants.kShooterIndexerCanId, MotorType.kBrushless);
-        m_exampleMotorTwo = new SparkMax(Constants.DriveConstants.kShooterCanId, MotorType.kBrushless);
+        m_coneGoIn = new SparkMax(Constants.DriveConstants.kShooterIndexerCanId, MotorType.kBrushless);
+        m_coneGoInGoUp = new SparkMax(Constants.DriveConstants.kShooterCanId, MotorType.kBrushless);
+
     }
 
     @Override
