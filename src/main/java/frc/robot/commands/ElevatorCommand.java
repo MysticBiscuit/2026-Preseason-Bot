@@ -10,7 +10,11 @@ public class ElevatorCommand extends Command {
     private final XboxController m_Controller;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public IntakeCommand(IntakeSubsystem elevator,XboxController controller) {
+=======
+    public ElevatorCommand(ElevatorSubsystem elevator,XboxController controller) {
+>>>>>>> Stashed changes
 =======
     public ElevatorCommand(ElevatorSubsystem elevator,XboxController controller) {
 >>>>>>> Stashed changes
@@ -22,6 +26,7 @@ public class ElevatorCommand extends Command {
     @Override
     public void execute() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       
         m_elevatorMotorOne.elevatorManualCommands(m_Controller.getYButton(),m_Controller.getAButton());
         m_elevatorMotorTwo.elevatorManualCommands(m_Controller.getYButton(),m_Controller.getAButton());
@@ -29,6 +34,8 @@ public class ElevatorCommand extends Command {
 
     }
 =======
+=======
+>>>>>>> Stashed changes
 
         boolean aButton = m_Controller.getAButton();
         boolean yButton = m_Controller.getYButton();
@@ -36,5 +43,8 @@ public class ElevatorCommand extends Command {
     }
 
     
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

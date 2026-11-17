@@ -34,7 +34,10 @@ public class ElevatorSubsystem extends SubsystemBase{
 
         m_elevatorMotorOne = new SparkMax(Constants.DriveConstants.kElevatorMotorOneCanId, MotorType.kBrushless); 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         m_elevatorMotorTwo = new SparkMax(Constants.DriveConstants.kElevatorMotorTwoCanId, MotorType.kBrushless);
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -44,6 +47,7 @@ public class ElevatorSubsystem extends SubsystemBase{
         m_elevatorLevelTwoLimit = new DigitalInput(Constants.DriveConstants.kElevatorLevelTwoLimitSwitchPort);
     }
 
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
     @Override
     public void periodic() {
@@ -71,6 +75,8 @@ public class ElevatorSubsystem extends SubsystemBase{
             @Override
             public boolean isFinished() {}            
 =======
+=======
+>>>>>>> Stashed changes
     public void goUp() {
         if (yButton) {
             (climbUpLevel)
@@ -108,6 +114,9 @@ public class ElevatorSubsystem extends SubsystemBase{
             public boolean isFinished() {
                 return (m_elevatorLevelOneLimit.get() || m_elevatorLevelTwoLimit.get() || m_elevatorTopLimit.get());
             }            
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
             @Override
@@ -116,6 +125,7 @@ public class ElevatorSubsystem extends SubsystemBase{
             @Override
             public void execute() {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
             if (m_elevatorBottomLimit.get() && (m_elevatorMotorOne.get(0) && m_elevatorMotorTwo.get(0))) {
                     m_elevatorMotorOne.set(0.25);
                     m_elevatorMotorTwo.set(-0.25);
@@ -123,6 +133,8 @@ public class ElevatorSubsystem extends SubsystemBase{
                 m_elevatorMotorOne.set(0.25);
                 m_elevatorMotorTwo.set(-0.25);
 =======
+=======
+>>>>>>> Stashed changes
                 m_elevatorMotorOne.set(0.25)
              }
             
@@ -170,11 +182,15 @@ public class ElevatorSubsystem extends SubsystemBase{
             @Override
             public void execute() {
                 m_elevatorMotorOne.set(0.25)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
             }
 
             @Override
             public void end(boolean interuppted) {
+<<<<<<< Updated upstream
 <<<<<<< Updated upstream
                 m_elevatorMotorOne.set(0);
             }
@@ -190,6 +206,8 @@ public class ElevatorSubsystem extends SubsystemBase{
     };
 };
 =======
+=======
+>>>>>>> Stashed changes
                 m_elevatorMotorOne.set(0)
             }
         }
@@ -217,5 +235,8 @@ public class ElevatorSubsystem extends SubsystemBase{
             }
         }
     };
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 };
