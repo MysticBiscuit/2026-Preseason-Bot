@@ -27,6 +27,9 @@ public class ElevatorSubsystem extends SubsystemBase{
     public double elevatorMotorOneSpeed = m_elevatorMotorOne.get();
     public double elevatorMotorTwoSpeed = m_elevatorMotorTwo.get();
 
+    private boolean m_climbLevelOneRequested = false;
+    private boolean m_climbLevelTwoRequested = false;
+
     //private boolean m_elevatorFullRequested = false;
     //private boolean m_elevatorAutoRequested = false;
 
@@ -40,88 +43,14 @@ public class ElevatorSubsystem extends SubsystemBase{
         m_elevatorLevelTwoLimit = new DigitalInput(Constants.DriveConstants.kElevatorLevelTwoLimitSwitchPort);
     }
 
-    public void goUp() {
-        if (yButton) {
-            (climbUpLevel)
-           boolean yButton = false;
-        };
-    }
 
-    public void goDown() {
-        if (aButton) {
-            (climbDownLevel)
-            boolean aButton = false;
-        }
-    }
-    public void goAllUp() {
-        if (yButton && xButton) {
-            (climbToTop)
-            boolean yButton = false
-            boolean xbutton = false;
-        };
-    }
-
-    public void goAllDown() {
-        if (aButton && xButton) {
-            (climbToBottom)
-            boolean aButton = false
-            boolean xbutton = false;
-        };
-    }
-
-
-    public Command climbUpLevel() {
-        return new Command() {
+    public Command climbLevelOne(boolean climbLevelOneRequested) {
+        if (climbLevelOneRequested) {
+            return new Command() {
 
             @Override
             public boolean isFinished() {
-                return (m_elevatorLevelOneLimit.get() || m_elevatorLevelTwoLimit.get() || m_elevatorTopLimit.get());
-            }            
-
-            @Override
-            public void initialize() {}
-
-            @Override
-            public void execute() {
-                m_elevatorMotorOne.set(0.25)
-             }
-            
-             @Override
-             public void end(boolean interuppted) {
-                m_elevatorMotorOne.set(0)
-             }
-        }
-    };
-
- public Command climbDownLevel() {
-        return new Command() {
-
-            @Override
-            public boolean isFinished() {
-                return (m_elevatorLevelOneLimit.get() || m_elevatorLevelTwoLimit.get() || m_elevatorBottomLimit.get());
-            }            
-
-            @Override
-            public void initialize() {}
-
-            @Override
-            public void execute() {
-                m_elevatorMotorOne.set(-0.25)
-             }
-            
-             @Override
-             public void end(boolean interuppted) {
-                m_elevatorMotorOne.set(0)
-             }
-        }
-    };
-
-    private Command climbToTop() {
-        return new Command() {
-
-            @Override
-            public boolean isFinished() {
-                return (m_elevatorTopLimit.
+                return m_elevatorLevelOneLimit.get() || m_elevatorTopLimit.get();
             }
 
             @Override
@@ -129,22 +58,27 @@ public class ElevatorSubsystem extends SubsystemBase{
 
             @Override
             public void execute() {
-                m_elevatorMotorOne.set(0.25)
+                m_elevatorMotorOne.set(0.25);
             }
 
             @Override
-            public void end(boolean interuppted) {
-                m_elevatorMotorOne.set(0)
+            public void end(boolean interuppted)  {
+                m_elevatorMotorOne.set(0);
+                boolean climbLevelOneRequested = false;
             }
         }
-    };
+        } else {
+            return Commands.none()
+        }
+    }
 
-    private Command climbToBottom() {
-        return new Command() {
+    public Command climbLevelTwo(boolean climbLevelTwoRequested) {
+        if (climbLevelTwoRequested) {
+            return new Command() {
 
             @Override
             public boolean isFinished() {
-                return m_elevatorTopLimit
+                return m_elevatorLevelTwoLimit.get() || m_elevatorBottomLimit.get()
             }
 
             @Override
@@ -152,13 +86,73 @@ public class ElevatorSubsystem extends SubsystemBase{
 
             @Override
             public void execute() {
-                m_elevatorMotorOne.set(-0.25)
+                m_elevatorMotorOne.set(-0.25);
             }
 
             @Override
-            public void end(boolean interuppted) {
-                m_elevatorMotorOne.set(0)
+            public void end(boolean interuppted)  {
+                m_elevatorMotorOne.set(0);
+                boolean climbLevelTwoRequested = false;
             }
         }
-    };
-};
+        } else {
+            return Commands.none()
+        }
+    }
+
+
+    public Command climbUp() {
+        return new Command() {
+
+            @Override
+            public boolean isFinished() {
+                return (!m_Controller.getYButton() || m_elevatorTopLimit.get())
+            }
+
+            @Override
+            public void initialize() {}
+
+            @Override
+            public void execute() {
+                m_elevatorMotorOne.set(0.25);
+            }
+
+            @Override
+            public void end(boolean interuppted)  {
+                m_elevatorMotorOne.set(0);
+            }
+        } else {
+            return Commands.none()
+        }
+    }
+
+    public Command climbDown() {
+        return new Command() {
+
+            @Override
+            public boolean isFinished() {
+                return (!m_Controller.getAButton() || m_elevatorBottomLimit.get())
+            }
+
+            @Override
+            public void initialize() {}
+
+            @Override
+            public void execute() {
+                m_elevatorMotorOne.set(-0.25);
+            }
+
+            @Override
+            public void end(boolean interuppted)  {
+                m_elevatorMotorOne.set(0);
+            }
+        } else {
+            return Commands.none()
+        }
+    }
+
+    public void updateWithControls(boolean climbLevelOneRequested, boolean climbLevelTwoRquested) {
+        m_climbLevelOneRequested = climbLevelOneRequested;
+        m_climbLevelTwoRequested = climbLevelTwoRequested;
+    }
+}
