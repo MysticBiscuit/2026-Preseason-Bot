@@ -281,7 +281,7 @@ private Command getBackTrajectory() {
     return m_intake;
 }
 
-/**private Command generateTrajectoryCommand(Pose2d start, Pose2d end, List<Translation2d> waypoints, TrajectoryConfig config) {
+/**private Command generateTrajectoryCommand(Pose2d end, List<Translation2d> waypoints, TrajectoryConfig config) {
     currentTrajectory = TrajectoryGenerator.generateTrajectory(
         start,
         waypoints,
@@ -315,15 +315,15 @@ private Command getBackTrajectory() {
         () -> m_robotDrive.drive(0, 0, 0, false)
       )
     );
-  }
+  }*/
 
-  private Command regenerateTrajectoryCommand(TrajectoryConfig config, double xEnd, double yEnd, double rotEnd) {
+  private Command generateTrajectoryCommand(TrajectoryConfig config, double xEnd, double yEnd, double rotEnd) {
     Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
         // Start at the origin facing the +X direction
         new Pose2d(0, 0, new Rotation2d(0)),
         // Pass through these two interior waypoints, making an 's' curve path
         List.of(),
-        // End 3 meters straight ahead of where we started, facing forward
+        
         new Pose2d(xEnd, yEnd, new Rotation2d(rotEnd)),
         config);
 
@@ -343,10 +343,10 @@ private Command getBackTrajectory() {
         m_robotDrive::setModuleStates,
         m_robotDrive);
 
-    // Reset odometry to the starting pose of the trajectory.
+    // Reset odometry to the starting pose of the trajectory
     m_robotDrive.resetOdometry(exampleTrajectory.getInitialPose());
 
     // Run path following command, then stop at the end.
     return swerveControllerCommand.andThen(() -> m_robotDrive.drive(0, 0, 0, false));
-  }*/
+  }
 }
