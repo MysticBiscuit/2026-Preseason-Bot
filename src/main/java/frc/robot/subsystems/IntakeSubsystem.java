@@ -24,7 +24,26 @@ public class IntakeSubsystem extends SubsystemBase{
     public IntakeSubsystem(){
         m_coneGoIn = new SparkMax(Constants.DriveConstants.kShooterIndexerCanId, MotorType.kBrushless);
         m_coneGoInGoUp = new SparkMax(Constants.DriveConstants.kShooterCanId, MotorType.kBrushless);
+    }
 
+    public void runConeConsumer(boolean consumeCone, boolean regurgitateCone) {
+        if(consumeCone) {
+            m_coneGoIn.set(0.2);
+        } else if (regurgitateCone) {
+            m_coneGoIn.set(-0.2);
+        } else {
+            m_coneGoIn.set(0);
+        }
+    }
+
+    public void runConsumerArm(boolean elevateCone, boolean lowerCone) {
+        if(elevateCone) {
+            m_coneGoInGoUp.set(0.2);
+        } else if (lowerCone) {
+            m_coneGoInGoUp.set(-0.2);
+        } else {
+            m_coneGoInGoUp.set(0);
+        }
     }
 
     @Override

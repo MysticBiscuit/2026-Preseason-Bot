@@ -16,7 +16,7 @@ public class IntakeCommand extends Command {
 
     @Override
     public void execute() {
-        m_intake.exampleFunction(m_Controller.getRightTriggerAxis() > 0.8);
-        
+        m_intake.runConeConsumer(m_Controller.getLeftTriggerAxis() > 0.8, m_Controller.getRightTriggerAxis() > 0.8);
+        m_intake.runConsumerArm(m_Controller.getRightBumperButton(), m_Controller.getLeftBumperButton());
     }
 }
